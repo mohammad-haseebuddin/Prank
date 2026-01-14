@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* New Background Image from unsplash representing gifts/celebration */
+            /* Background Image representing gifts/celebration */
             background: url('https://images.unsplash.com/photo-1513201099705-a9746e1e201f?q=80&w=1000&auto=format&fit=crop') no-repeat center center fixed;
             background-size: cover;
             height: 100vh;
@@ -34,22 +34,19 @@
 
         /* The main white box */
         .container {
-            background: rgba(255, 255, 255, 0.9); /* Slightly more opaque */
-            padding: 2.5rem; /* More internal space */
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2.5rem;
             border-radius: 25px;
             box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-            /* Increased size for desktop */
             width: 550px; 
-            max-width: 90%; /* Ensures it fits on mobile */
+            max-width: 90%;
             position: relative;
             backdrop-filter: blur(8px);
-            z-index: 2; /* Ensures container is above the background overlay */
-            /* Intro animation for the container */
+            z-index: 2;
             animation: popIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            transition: border 0.5s ease;
+            transition: border 0.5s ease, box-shadow 0.5s ease;
         }
 
-        /* Container entrance animation */
         @keyframes popIn {
             0% { opacity: 0; transform: scale(0.5); }
             100% { opacity: 1; transform: scale(1); }
@@ -68,11 +65,11 @@
             line-height: 1.6;
         }
 
-        /* --- Buttons with Better Animation --- */
+        /* --- Buttons --- */
         .btn {
             background: linear-gradient(to right, #ff416c, #ff4b2b);
             border: none;
-            padding: 18px 40px; /* Larger buttons */
+            padding: 18px 40px;
             color: white;
             font-size: 1.2rem;
             font-weight: bold;
@@ -83,7 +80,6 @@
             outline: none;
         }
 
-        /* Hover effect for buttons */
         .btn:hover {
             transform: translateY(-3px) scale(1.05);
             box-shadow: 0 10px 25px rgba(255, 65, 108, 0.7);
@@ -93,7 +89,7 @@
             transform: scale(0.95);
         }
 
-        /* --- Other Animations --- */
+        /* --- Animations --- */
         @keyframes float {
             0% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-20px) rotate(5deg); }
@@ -119,7 +115,6 @@
             animation: slideUpFade 0.5s ease forwards;
         }
 
-        /* Smoother transition between steps */
         @keyframes slideUpFade {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -153,16 +148,14 @@
         }
 
         /* --- THE PRANK REVEAL STYLE --- */
-        
-        /* Makes the background overlay darker and serious */
         body.prank-mode::before {
             background: rgba(20, 20, 20, 0.95); 
         }
 
         .prank-mode .container {
             background: #fff;
-            border: 8px solid #e74c3c; /* Thick red border */
-            box-shadow: 0 0 50px rgba(231, 76, 60, 0.5); /* Red glow */
+            border: 8px solid #e74c3c;
+            box-shadow: 0 0 50px rgba(231, 76, 60, 0.5);
         }
 
         .prank-text {
@@ -199,7 +192,7 @@
         @media (max-width: 480px) {
             .container {
                 padding: 1.5rem;
-                width: 95%; /* Use almost full width on small phones */
+                width: 95%;
             }
             h1 { font-size: 1.6rem; }
             p { font-size: 1.1rem; margin-bottom: 25px; }
@@ -223,7 +216,7 @@
 
         <div id="step-2" class="step">
             <h1>Wait a second...</h1>
-             <p>Sach me dekhna chahti hai?</p>
+            <p>Sach me dekhna chahti hai?</p>
             <button class="btn" onclick="nextStep(3)">Yes, I am!</button>
         </div>
 
@@ -236,15 +229,22 @@
         </div>
 
         <div id="step-4" class="step">
-            <h1 style="color: #6c5ce7;">Almost There!</h1>
-             <p>Promise, kisi ko nhi batayegi?</p>
-            <button class="btn" onclick="revealPrank()">I Promise!</button>
+            <div class="gift-emoji" style="font-size: 7rem;">🧠</div> 
+            <h1 style="color: #fca311;">Yeh le tere liye BEST gift!</h1>
+            <p>Sabse zyada zarurat isi ki hai tujhe. 😉</p>
+            <button class="btn" onclick="nextStep(5)">Wait wait, aur bhi hai Click here ! 😂</button>
         </div>
 
         <div id="step-5" class="step">
+            <h1 style="color: #6c5ce7;">Almost There!</h1>
+            <p>Promise, kisi ko nhi batayegi?</p>
+            <button class="btn" onclick="revealPrank()">I Promise!</button>
+        </div>
+
+        <div id="step-6" class="step">
             <div style="font-size: 5rem; margin-bottom: 20px;">📚🧐</div>
             <div class="prank-text">BETA PADHAI KARLE!</div>
-            <p class="sub-text">Reels dekhne se ghar nahi chalta.</p>
+            <p class="sub-text">Ye sab karne se ghar nahi chalta.</p>
             <p style="font-size: 1rem; color: #888; margin-top: 30px;">(Go study now! 😂)</p>
         </div>
 
@@ -263,19 +263,20 @@
             }
         }
 
-        // Fake Loading Animation (Slightly faster for better UX)
+        // Fake Loading Animation
         function runFakeLoader() {
             const bar = document.getElementById('progressBar');
             const text = document.getElementById('loadingText');
             let width = 0;
-            const messages = ["Connecting...", "Scanning Face...", "Verifying Cuteness...", "Generating Gift...", "Finalizing..."];
+            const messages = ["Connecting...", "Scanning Face...", "Verifying Cuteness...", "Finding Brain...", "Almost Found..."];
             
             const interval = setInterval(() => {
                 if (width >= 100) {
                     clearInterval(interval);
-                    setTimeout(() => nextStep(4), 300);
+                    // Go to Step 4 (The Brain Gift) automatically after loading
+                    setTimeout(() => nextStep(4), 300); 
                 } else {
-                    width += 1.5; // Slightly faster loading
+                    width += 1.5; 
                     bar.style.width = width + '%';
                     
                     if(Math.floor(width) % 20 === 0 && width < 90) {
@@ -288,8 +289,10 @@
         // The Prank Reveal Function
         function revealPrank() {
             document.body.classList.add('prank-mode');
-            document.getElementById('step-4').classList.remove('active');
-            document.getElementById('step-5').classList.add('active');
+            // Hide the promise step (now step 5)
+            document.getElementById('step-5').classList.remove('active');
+            // Show the prank step (now step 6)
+            document.getElementById('step-6').classList.add('active');
         }
     </script>
 </body>
